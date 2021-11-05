@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/single-spa-angularjs@4.2.1/lib/single-spa-angularjs.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+        <script type="systemjs-importmap">
+            {
+                "imports": {
+                    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.1/lib/system/single-spa.min.js",
+                    "@app/legacyAngularjsApp": "/main.js",
+                    "@app/newAngularApp": "//localhost:8081/main.js"
+                }
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+        <script>
+            System.import('@app/legacyAngularjsApp');
+        </script>
+    </head>
+
+    <body>
+        <ui-view></ui-view>
+
+        <p>Click on the links to navigate to Angular micro app</p>
+        <br />
+
+        <p>
+            <a href="#!/home">AngularJs App</a>
+            <br />
+            <a href="#!/angular">Angular App</a>
+        </p>
+        <script>
+            System.import('single-spa').then(function (singleSpa) {
+                window.singleSpa = singleSpa;
+                singleSpa.registerApplication(
+                    'legacyAngularjsApp',
+                    function () {
+                        return System.import('@app/legacyAngularjsApp');
+                    },
+                    function () {
+                        return location.hash.startsWith('#!/home');
+                    }
+                );
+                singleSpa.registerApplication(
+                    'newAngularApp',
+                    function () {
+                        return System.import('@app/newAngularApp');
+                    },
+                    function () {
+                        return location.hash.startsWith('#!/angular');
+                    }
+                );
+                singleSpa.start();
+            });
+        </script>
+    </body>
+</html>
