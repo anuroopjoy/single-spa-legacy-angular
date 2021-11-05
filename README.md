@@ -1,5 +1,7 @@
 # single-spa-legacy-angular
 
+This is a sample Single Spa application integrating AngularJs and Angular 12 applications as micro frontends.
+
 1. Install the npm package http-server globally using 
 ``npm i -g http-server``
 
