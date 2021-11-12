@@ -8,21 +8,19 @@
       {
         "imports": {
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.1/lib/system/single-spa.min.js",
-          "@app/legacyAngularjsApp": "/main.js",
+          "@app/legacyAngularApp": "/main.js",
           "@app/newAngularApp": "//localhost:8081/main.js"
         }
       }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
     <script>
-      System.import("@app/legacyAngularjsApp");
+      System.import("@app/legacyAngularApp");
     </script>
   </head>
 
   <body>
-    <ui-view></ui-view>
-
     <p>Click on the links to navigate to Angular micro app</p>
     <br />
 
@@ -31,20 +29,21 @@
       <br />
       <a href="#!/angular">Angular App</a>
     </p>
+    <ui-view></ui-view>
     <script>
       System.import("single-spa").then(function (singleSpa) {
         window.singleSpa = singleSpa;
-        singleSpa.registerApplication({
-          name: "legacyAngularjsApp",
-          app: () => System.import("@app/legacyAngularjsApp"),
+        window.singleSpa.registerApplication({
+          name: "legacyAngularApp",
+          app: () => System.import("@app/legacyAngularApp"),
           activeWhen: ["#!/home"],
         });
-        singleSpa.registerApplication({
+        window.singleSpa.registerApplication({
           name: "newAngularApp",
           app: () => System.import("@app/newAngularApp"),
           activeWhen: ["#!/angular"],
         });
-        singleSpa.start();
+        window.singleSpa.start();
       });
     </script>
   </body>
