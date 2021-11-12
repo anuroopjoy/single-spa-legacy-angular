@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
