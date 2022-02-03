@@ -26,11 +26,11 @@
     <br />
 
     <p>
-      <a href="#!/home">AngularJs App</a>
+      <a href="#/home">AngularJs App</a>
       <br />
-      <a href="#!/angular">Angular App</a>
+      <a href="#/angular">Angular App</a>
       <br />
-      <a href="#!/vue">Vue App</a>
+      <a href="#/vue">Vue App</a>
     </p>
     <ui-view></ui-view>
     <script>
@@ -39,17 +39,17 @@
         window.singleSpa.registerApplication({
           name: "legacyAngularApp",
           app: () => System.import("@app/legacyAngularApp"),
-          activeWhen: ["#!/home"],
+          activeWhen: ["#/home"],
         });
         window.singleSpa.registerApplication({
           name: "newAngularApp",
           app: () => System.import("@app/newAngularApp"),
-          activeWhen: ["#!/angular"],
+          activeWhen: ["#/angular"],
         });
         window.singleSpa.registerApplication({
           name: "vueApp",
           app: () => System.import("@app/vue"),
-          activeWhen: ["#!/vue"],
+          activeWhen: ["#/vue"],
         });
         window.singleSpa.start();
       });

@@ -15,7 +15,8 @@ System.register([], function (_export) {
 
 var app = angular.module("main-module", ["ui.router"]);
 
-app.config(function ($stateProvider) {
+app.config(function ($stateProvider, $locationProvider) {
+  $locationProvider.hashPrefix("");
   $stateProvider.state({
     name: "main",
     url: "/home",
