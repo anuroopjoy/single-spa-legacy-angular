@@ -9,7 +9,8 @@
         "imports": {
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.1/lib/system/single-spa.min.js",
           "@app/legacyAngularApp": "/main.js",
-          "@app/newAngularApp": "//localhost:8081/main.js"
+          "@app/newAngularApp": "//localhost:8081/main.js",
+          "@app/vue": "//localhost:8082/js/app.js"
         }
       }
     </script>
@@ -28,6 +29,8 @@
       <a href="#!/home">AngularJs App</a>
       <br />
       <a href="#!/angular">Angular App</a>
+      <br />
+      <a href="#!/vue">Vue App</a>
     </p>
     <ui-view></ui-view>
     <script>
@@ -42,6 +45,11 @@
           name: "newAngularApp",
           app: () => System.import("@app/newAngularApp"),
           activeWhen: ["#!/angular"],
+        });
+        window.singleSpa.registerApplication({
+          name: "vueApp",
+          app: () => System.import("@app/vue"),
+          activeWhen: ["#!/vue"],
         });
         window.singleSpa.start();
       });
